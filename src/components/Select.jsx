@@ -49,7 +49,7 @@ function Select() {
               <div className="flex items-center justify-between -mt-1.5">
                 <div className="flex items-center">
                   <h2>
-                    {current?.name} {current?.flag}
+                    {current?.name}
                   </h2>
                   <h3 className="text-grey-600">{current?.code}</h3>
                 </div>
