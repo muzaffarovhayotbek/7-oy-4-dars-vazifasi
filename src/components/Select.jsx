@@ -8,29 +8,37 @@ function Select() {
   const [current, setCurrent] = useState(about.countries[0]);
   const [filter, setFilter] = useState(about.countries);
   const [field, setField] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const searchRef = useRef();
 
+  // Toggles the dropdown menu visibility
   function handleToggle() {
     setOpen(!open);
   }
 
+  // Select a country from the list and set it as current
   function handleSelect(phone) {
     setCurrent(phone);
+    setPhoneNumber(phone.code);
+    setField('');
     setOpen(false);
   }
 
+  // Filter countries based on the entered name
   useEffect(() => {
-    if (field.length == 0) {
+    if (field.length === 0) {
       setFilter(about.countries);
     } else {
       let copied = [...filter];
       copied = copied.filter((item) => {
-        return item.name.includes(field);
+        return item.name.toLowerCase().includes(field.toLowerCase());
       });
 
       setFilter(copied);
     }
   }, [field]);
+
+  // Reset the filter and field when the dropdown is open
   useEffect(() => {
     if (open) {
       searchRef.current.focus();
@@ -42,15 +50,13 @@ function Select() {
   return (
     <div onClick={handleToggle} className="">
       <div>
-        <div className="px-2 py-3 border min-h-14 border-grey-300 max-w-[350px] rounded-md cursor-pointer hover: bg-grey-100 transition duration-200">
+        <div className="px-2 py-3 border min-h-14 border-grey-300 max-w-[350px] rounded-md cursor-pointer hover:bg-grey-100 transition duration-200">
           {!open && (
             <div className="pr-8">
               <label>Phone</label>
               <div className="flex items-center justify-between -mt-1.5">
                 <div className="flex items-center">
-                  <h2>
-                    {current?.name}
-                  </h2>
+                  <h2>{current?.name}</h2>
                   <h3 className="text-grey-600">{current?.code}</h3>
                 </div>
                 <img src={arrow} className="w-2.5" alt="" />
@@ -63,7 +69,7 @@ function Select() {
                 ref={searchRef}
                 className="outline-0 w-full"
                 type="text"
-                placeholder="Enter phone"
+                placeholder="Enter country name"
                 value={field}
                 onChange={(e) => {
                   setField(e.target.value);
@@ -90,6 +96,18 @@ function Select() {
               );
             })}
         </ul>
+      )}
+      {phoneNumber && (
+        <div className="mt-4">
+          <label>Phone Number</label>
+          <input
+            type="text"
+            placeholder={`Enter phone number for ${current.name}`}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            className="mt-2 border p-2 rounded w-full"
+          />
+        </div>
       )}
     </div>
   );
