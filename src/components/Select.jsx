@@ -11,12 +11,10 @@ function Select() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const searchRef = useRef();
 
-  // Toggles the dropdown menu visibility
   function handleToggle() {
     setOpen(!open);
   }
 
-  // Select a country from the list and set it as current
   function handleSelect(phone) {
     setCurrent(phone);
     setPhoneNumber(phone.code);
@@ -24,7 +22,6 @@ function Select() {
     setOpen(false);
   }
 
-  // Filter countries based on the entered name
   useEffect(() => {
     if (field.length === 0) {
       setFilter(about.countries);
@@ -38,7 +35,6 @@ function Select() {
     }
   }, [field]);
 
-  // Reset the filter and field when the dropdown is open
   useEffect(() => {
     if (open) {
       searchRef.current.focus();
