@@ -55,7 +55,7 @@ function Select() {
                   <h2>{current?.name}</h2>
                   <h3 className="text-grey-600">{current?.code}</h3>
                 </div>
-                <img src={arrow} className="w-2.5" alt="" />
+                <img src={arrow} className="w-2.5" alt="arrow" />
               </div>
             </div>
           )}
