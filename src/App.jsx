@@ -1,13 +1,14 @@
-import React from 'react';
-import Select from './components/Select';
+import React from 'react'
+import Phone from './components/phone'
+import './App.css'
 
 function App() {
   return (
-    <div className="container mx-auto mt-2 flex flex-col justify-center items-center  p-4 ">
-      <Select></Select>
-      <button className='bg-red-600 text-white rounded-md cursor-pointer mt-3'>Register</button>
+    <div>
+      <h1 className='heading'>Phone Number Validate Example</h1>
+      <Phone/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
